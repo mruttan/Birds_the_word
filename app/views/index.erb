@@ -1,0 +1,17 @@
+<h1> Bird's The Word </h1>
+
+<% @questions.each do |x| %>
+<p> <%= x.content %> </p>
+<% @game.generate_answers(x).shuffle.each do |answer| %>
+  <% if answer == x.author.name %>
+    <button class="correct"> <a href="/correct"><%= answer %></a> </button>
+    <% else %>
+    <button class="incorrect"> <a href="/incorrect"><%= answer %></a> </button>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+
+
