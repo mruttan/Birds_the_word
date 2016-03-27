@@ -1,28 +1,66 @@
-<h1> Leaderboard! </h1>
+
+
 
 <% @leaders = User.all %>
 
-<table id="myTable", class="tablesorter">
-  <thead>
-    <tr>
-      <th> Username </th>
-      <th> Name </th>
-      <th> All Time Score</th>
-      <th> Daily Score</th>
-      <th> Weekly Score</th>
-      <th> Monthly Score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @leaders.each do |x| %>
-    <tr>
-    <td><a href='/user/<%=x.id%>' id="username_leaderboard"><%= x.username %></a></td>
-    <td><%= x.name %> </td>
-    <td><%= Score.all_time(x) %></td>
-    <td><%= Score.today(x) %></td>
-    <td><%= Score.weekly(x) %></td>
-    <td><%= Score.monthly(x) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="/leaderboard">Leaderboard</a></li>
+        <li><a href="/user/<%=@user.id%>">All Time: <%= @user.total_score %> </a></li>
+        <li><a href="/user/<%=@user.id%>">Current Score: <%=session[:session_score]%></a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="/user/<%=@user.id%>">Welcome <%= @user.name %></a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="/logout">Logout</a></li>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header" style="padding-left: 50px;">Leaderboard</h1>
+
+     
+
+    </div>
+    <div style="padding-left: 320px; padding-right: 350px;">
+      <table id="myTable" class="tablesorter"> 
+      <thead> 
+      <tr> 
+          <th style="padding-left: 5px; padding-right: 100px;">Username</th> 
+          <th style="padding-left: 5px; padding-right: 100px;">Name</th> 
+          <th style="padding-left: 5px; padding-right: 100px;">Weekly Score</th> 
+          <th style="padding-left: 5px; padding-right: 100px;">Monthly Score</th> 
+          <th style="padding-left: 5px; padding-right: 100px;">All Time Score</th> 
+          <th style="padding-left: 5px; padding-right: 100px; font-style: italic;">Daily Score</th>
+      </tr> 
+      </thead> 
+
+      <tbody>
+        <% @leaders.each do |x| %>
+          <tr>
+            <td><a href='/user/<%=x.id%>' id="username_leaderboard"><%= x.username %></a></td>
+            <td><%= x.name %> </td>
+            <td><%= Score.all_time(x) %></td>
+            <td><%= Score.today(x) %></td>
+            <td><%= Score.weekly(x) %></td>
+            <td><%= Score.monthly(x) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      </table> 
+    </div>
+    
+      <div class="table-responsive" style="padding-top: 100px; padding-right: 50px;">
+        <table>
+          <thead>
+           <ul style="padding-top: 150px; font-weight: bold;">
+ 
+            </ul>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
