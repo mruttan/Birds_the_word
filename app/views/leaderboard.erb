@@ -1,0 +1,28 @@
+<h1> Leaderboard! </h1>
+
+<% @leaders = User.all %>
+
+<table id="myTable", class="tablesorter">
+  <thead>
+    <tr>
+      <th> Username </th>
+      <th> Name </th>
+      <th> All Time Score</th>
+      <th> Daily Score</th>
+      <th> Weekly Score</th>
+      <th> Monthly Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @leaders.each do |x| %>
+    <tr>
+    <td><a href='/user/<%=x.id%>' id="username_leaderboard"><%= x.username %></a></td>
+    <td><%= x.name %> </td>
+    <td><%= Score.all_time(x) %></td>
+    <td><%= Score.today(x) %></td>
+    <td><%= Score.weekly(x) %></td>
+    <td><%= Score.monthly(x) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

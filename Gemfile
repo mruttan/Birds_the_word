@@ -5,8 +5,10 @@ gem 'rake'
 gem 'activesupport'
 
 gem 'sinatra'
+gem 'rack-flash3'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
+gem 'bcrypt'
 
 gem 'puma'
 gem 'tux'

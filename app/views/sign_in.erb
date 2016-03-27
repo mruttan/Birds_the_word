@@ -1,0 +1,94 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Bird's the Word</title>
+
+    
+
+    <link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../stylesheets/dashboard.css">
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="">Leaderboard</a></li>
+            <li><a href="">Score:</a></li>
+            <li><a href="">All Time:</a></li>
+            <li><a href="">Session:</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Please: SIGN IN!</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Bird's the Word</h1>
+          <h2 class="sub-header" style="padding-top: 20px;">Login!</h2>
+            <p>
+              <form  id="sign_in" method="post" action="/sign_in">
+              <% if flash[:notice] %>
+               <div class="alert alert-warning" role="alert"><%= flash[:notice] %></div>
+               <% end %>
+                <ul style="list-style-type: none;">
+                  <li>
+                    <label> Username: </label>
+                    <input id="username_signin" type="text" name="username" required>
+                  </li>
+                  <li>
+                  <label> Password: </label>
+                    <input id="password_signin" type="password" name="password" required>
+                  </li>
+                  <li>  
+                    <input class="submit" type="submit" pas/>
+                  </li>
+                </ul>
+              </form>
+            </p>
+          <h2>Or, if you are new, Signup!</h2>
+            <p>
+              <form  id="sign_up" method="post" action="/sign_up">
+                <% if @user && @user.errors.any? %>
+                  <% @user.errors.full_messages.each do |error| %>
+                    <div class="alert alert-warning"> <%=error%> </div>
+                  <%end%>
+                <%end%>
+                <ul style="list-style-type: none;">
+                  <li>
+                    <label> Name: </label>
+                    <input id="name_signup" type="text" name="name" required>
+                  </li>
+                  <li>
+                    <label> Username: </label>
+                    <input id="username_signup" type="text" name="username" required>
+                  </li>
+                  <li>
+                    <label> Password: </label>
+                    <input id="password_signup" type="password" name="password" required>
+                  </li>
+                  <li>  
+                    <input class="submit" type="submit" pas/>
+                  </li>
+                </ul>
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

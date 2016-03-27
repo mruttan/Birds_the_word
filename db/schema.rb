@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323183755) do
+ActiveRecord::Schema.define(version: 20160327195347) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 20160323183755) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer  "score"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "name"
+    t.integer  "total_score",     default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
 end

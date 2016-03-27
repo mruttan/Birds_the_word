@@ -1,17 +1,51 @@
-<h1> Bird's The Word </h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="/leaderboard">Leaderboard</a></li>
+        <li><a href="/user/<%=@user.id%>">All Time: <%= @user.total_score %> </a></li>
+        <li><a href="/user/<%=@user.id%>">Current Score: <%=session[:session_score]%></a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="/user/<%=@user.id%>">Welcome <%= @user.name %></a></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="/logout">Logout</a></li>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">Bird's the Word</h1>
 
-<% @questions.each do |x| %>
-<p> <%= x.content %> </p>
-<% @game.generate_answers(x).shuffle.each do |answer| %>
-  <% if answer == x.author.name %>
-    <button class="correct"> <a href="/correct"><%= answer %></a> </button>
-    <% else %>
-    <button class="incorrect"> <a href="/incorrect"><%= answer %></a> </button>
-    <% end %>
-  <% end %>
-<% end %>
+      <h1 style="padding-top: 50px; padding-left: 20px;">"</h1>
+      <div style="padding-top: 10px; padding-left: 150px;">
+        <h2 style="font-style: italic;"> <%=@question.content%> </h2>
+      </div>
+      <h1 style="padding-top: 50px; padding-left: 1300px;">"</h1>
+      <div class="table-responsive" style="padding-top: 100px;">
+        <table class="table table-striped">
+          <thead>
+           <ul>
+            <% @answers = @game.generate_answers(@question) %>
+            <% @answers.each do |x| %>
+              <% if x == @question.author[:name] %>
+                <li class="answer"> <button class="answer_button"> <a class="correct" href='/correct'><%= x %></a> </button> </li>
+              <% else %>
+                <li class="answer"> <button class="answer_button"> <a class="wrong" href='/wrong_answer'><%= x %></a></button> </li>
+            <% end %>
+            <% end %>
+            </ul>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-
-
-
+<script>
+var answer = '<%=@question.author[:name]%>';
+$(".correct").click(function(){
+    alert("You're right! You get a point! Awesome!");
+});
+$(".wrong").click(function(){
+  alert("Oops...! The correct answer was: " + answer + ". You have lost a point.")
+});
+</script>

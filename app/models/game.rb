@@ -2,7 +2,6 @@ class Game
 
   def initialize(length = 10)
     @length = length
-    @current_quesions = []
   end
 
   def generate_quotes
@@ -18,7 +17,7 @@ class Game
       answers << x.name
     end
     answers << answer1.name
-    answers
+    answers.shuffle
   end
 
 end
